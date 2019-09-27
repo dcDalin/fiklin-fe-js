@@ -1,39 +1,55 @@
-import React from 'react';
-import { Container, Header, Button, Icon } from 'semantic-ui-react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import Coverflow from 'react-coverflow';
 
-const HomepageHeading = ({ mobile }) => (
-  <Container text>
-    <Header
-      as="h1"
-      content="Imagine-a-Company"
-      inverted
-      style={{
-        fontSize: mobile ? '2em' : '4em',
-        fontWeight: 'normal',
-        marginBottom: 0,
-        marginTop: mobile ? '1.5em' : '3em',
-      }}
-    />
-    <Header
-      as="h2"
-      content="Do whatever you want when you want to."
-      inverted
-      style={{
-        fontSize: mobile ? '1.5em' : '1.7em',
-        fontWeight: 'normal',
-        marginTop: mobile ? '0.5em' : '1.5em',
-      }}
-    />
-    <Button primary size="huge">
-      Get Started
-      <Icon name="right arrow" />
-    </Button>
-  </Container>
-);
+class HomepageHeading extends Component {
+  constructor(props) {
+    super(props);
 
-HomepageHeading.propTypes = {
-  mobile: PropTypes.bool.isRequired,
-};
+    this.state = {
+      active: 0,
+    };
+  }
+
+  render() {
+    return (
+      <div>
+        <Coverflow
+          width={960}
+          height={480}
+          displayQuantityOfSide={2}
+          navigation
+          enableHeading={false}
+          active={this.state.active}
+        >
+          <img
+            src="https://www.kenyabuzz.com/public/uploads/posters/71042d50fa61b7656b4e7090dd851b01.jpg"
+            alt="Album four"
+            data-action="http://tw.yahoo.com"
+          />
+          <img
+            src="https://www.kenyabuzz.com/public//uploads/posters/1568269737.jpg"
+            alt="Album two"
+            data-action="http://passer.cc"
+          />
+          <img
+            src="https://www.kenyabuzz.com/public/uploads/posters/71042d50fa61b7656b4e7090dd851b01.jpg"
+            alt="Album four"
+            data-action="http://tw.yahoo.com"
+          />
+          <img
+            src="https://www.kenyabuzz.com/public//uploads/posters/1568269737.jpg"
+            alt="Album three"
+            data-action="https://doce.cc/"
+          />
+          <img
+            src="https://www.kenyabuzz.com/public/uploads/posters/71042d50fa61b7656b4e7090dd851b01.jpg"
+            alt="Album four"
+            data-action="http://tw.yahoo.com"
+          />
+        </Coverflow>
+      </div>
+    );
+  }
+}
 
 export default HomepageHeading;

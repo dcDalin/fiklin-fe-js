@@ -4,10 +4,10 @@ import DesktopContainer from '../containers/desktopContainer';
 import MobileContainer from '../containers/mobileContainer';
 
 const ResponsiveContainer = ({ children }) => (
-  <div>
+  <>
     <DesktopContainer>{children}</DesktopContainer>
     <MobileContainer>{children}</MobileContainer>
-  </div>
+  </>
 );
 
 ResponsiveContainer.propTypes = {
