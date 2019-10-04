@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Responsive, Menu, Sidebar, Segment, Container, Icon, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import getWidth from '../utils/getWidth';
-import HomepageHeading from '../components/Header';
 
 class MobileContainer extends Component {
   // eslint-disable-next-line react/state-in-constructor
@@ -25,7 +24,6 @@ class MobileContainer extends Component {
         <Sidebar
           as={Menu}
           animation="push"
-          inverted
           onHide={this.handleSidebarHide}
           vertical
           visible={sidebarOpened}
@@ -41,29 +39,19 @@ class MobileContainer extends Component {
         </Sidebar>
 
         <Sidebar.Pusher dimmed={sidebarOpened}>
-          <Segment
-            inverted
-            textAlign="center"
-            style={{ minHeight: 350, padding: '1em 0em' }}
-            vertical
-          >
-            <Container>
-              <Menu inverted pointing secondary size="large">
-                <Menu.Item onClick={this.handleToggle}>
-                  <Icon name="sidebar" />
-                </Menu.Item>
-                <Menu.Item position="right">
-                  <Button as="a" inverted>
-                    Log in
-                  </Button>
-                  <Button as="a" inverted style={{ marginLeft: '0.5em' }}>
-                    Sign Up
-                  </Button>
-                </Menu.Item>
-              </Menu>
-            </Container>
-            <HomepageHeading mobile />
-          </Segment>
+          <Container>
+            <Menu pointing secondary size="large">
+              <Menu.Item onClick={this.handleToggle}>
+                <Icon name="sidebar" />
+              </Menu.Item>
+              <Menu.Item position="right">
+                <Button as="a">Log in</Button>
+                <Button as="a" style={{ marginLeft: '0.5em' }}>
+                  Sign Up
+                </Button>
+              </Menu.Item>
+            </Menu>
+          </Container>
 
           {children}
         </Sidebar.Pusher>

@@ -1,25 +1,44 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Responsive, Menu, Input, Image } from 'semantic-ui-react';
+import { Responsive, Menu, Image } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import getWidth from '../utils/getWidth';
 import WibLogo from '../assets/wib-logo.png';
+import Signup from '../components/Auth/Signup/Signup';
 
 const DesktopContainer = ({ children, activeItem, onClick }) => {
   return (
     <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth}>
-      <Menu borderless>
-        <Menu.Item name="home" active={activeItem === 'home'} onClick={onClick} as={Link} to="/">
+      <Menu borderless size="mini">
+        <Menu.Item
+          className="custom-menu-item"
+          name="home"
+          active={activeItem === 'home'}
+          onClick={onClick}
+          as={Link}
+          to="/"
+        >
           <Image src={WibLogo} size="mini" verticalAlign="top" />
         </Menu.Item>
-        <Menu.Item name="messages" />
-        <Menu.Item name="faq" active={activeItem === 'faq'} onClick={onClick} as={Link} to="/faq" />
+
+        <Menu.Item
+          className="custom-menu-item"
+          name="explore"
+          active={activeItem === 'explore'}
+          onClick={onClick}
+          as={Link}
+          to="/explore"
+        />
         <Menu.Menu position="right">
-          <Menu.Item>
-            <Input icon="search" placeholder="Search..." />
-          </Menu.Item>
-          <Menu.Item name="log in" />
-          <Menu.Item name="sign up" />
+          <Menu.Item
+            className="custom-menu-item"
+            name="login"
+            active={activeItem === 'login'}
+            onClick={onClick}
+            as={Link}
+            to="/login"
+          />
+          <Signup activeItem={activeItem} />
         </Menu.Menu>
       </Menu>
       {children}
@@ -29,6 +48,8 @@ const DesktopContainer = ({ children, activeItem, onClick }) => {
 
 DesktopContainer.propTypes = {
   children: PropTypes.node.isRequired,
+  activeItem: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default DesktopContainer;
