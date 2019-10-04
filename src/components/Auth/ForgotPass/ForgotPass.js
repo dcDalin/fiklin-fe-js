@@ -40,9 +40,11 @@ class ForgotPass extends React.Component {
 
           <Modal.Content>
             <Form>
-              <Form.Field required>
-                <label htmlFor="email">Email</label>
-                <input type="email" name="email" placeholder="Email Address" />
+              <Form.Field>
+                <label htmlFor="email">
+                  Email
+                  <input type="email" name="email" id="email" placeholder="Email Address" />
+                </label>
               </Form.Field>
               <Divider />
               <Button type="submit" color="purple" onClick={this.close}>

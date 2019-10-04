@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Responsive, Menu, Sidebar, Segment, Container, Icon, Button } from 'semantic-ui-react';
+import { Responsive, Menu, Sidebar, Container, Icon, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import getWidth from '../utils/getWidth';
 
