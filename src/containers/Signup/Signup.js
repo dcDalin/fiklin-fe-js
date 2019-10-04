@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SignupForm from './SignupForm';
 
-const SignupContainer = () => <SignupForm />;
+const SignupContainer = () => {
+  useEffect(() => {
+    document.title = 'Sign up | WIB';
+  }, []);
+  return <SignupForm />;
+};
 
 export default SignupContainer;

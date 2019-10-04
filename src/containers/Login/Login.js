@@ -3,7 +3,7 @@ import Login from '../../components/Auth/Login/Login';
 
 const LoginContainer = () => {
   useEffect(() => {
-    document.title = 'Login | WIB';
+    document.title = 'Log in | WIB';
   }, []);
   return <Login />;
 };
