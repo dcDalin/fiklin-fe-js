@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Responsive, Menu, Image } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import getWidth from '../utils/getWidth';
 import WibLogo from '../assets/wib-logo.png';
-import Signup from '../components/Auth/Signup/Signup';
+import SignUpModal from '../components/Auth/Signup/SignUpModal';
+import { AuthContext } from '../context/auth';
+import UserAvatarDropdown from '../components/UserAvatarDropdown';
 
 const DesktopContainer = ({ children, activeItem, onClick }) => {
+  const { user, logout } = useContext(AuthContext);
+  const signUpModal = <SignUpModal activeItem={activeItem} />;
+  const userAvatar = (
+    <Menu.Item>
+      <UserAvatarDropdown logOut={logout} user="test" />
+    </Menu.Item>
+  );
   return (
     <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth}>
       <Menu borderless size="mini">
@@ -38,7 +47,7 @@ const DesktopContainer = ({ children, activeItem, onClick }) => {
             as={Link}
             to="/login"
           />
-          <Signup activeItem={activeItem} />
+          {user ? signUpModal : userAvatar}
         </Menu.Menu>
       </Menu>
       {children}
