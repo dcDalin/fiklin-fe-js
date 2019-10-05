@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import Home from '../../containers/Home';
-import Explore from '../../containers/Explore';
-import Login from '../../containers/Login';
-import Signup from '../../containers/Signup';
+import Home from '../../pages/Home';
+import Explore from '../../pages/Explore';
+import Login from '../../pages/Login';
+import Signup from '../../pages/Signup';
 
 const Content = () => (
   <>
