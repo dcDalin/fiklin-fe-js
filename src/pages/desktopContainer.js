@@ -4,7 +4,7 @@ import { Responsive, Menu, Image } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import getWidth from '../utils/getWidth';
 import WibLogo from '../assets/wib-logo.png';
-import Signup from '../components/Auth/Signup/Signup';
+import SignupModal from '../components/Auth/Signup/SignupModal';
 
 const DesktopContainer = ({ children, activeItem, onClick }) => {
   return (
@@ -38,7 +38,7 @@ const DesktopContainer = ({ children, activeItem, onClick }) => {
             as={Link}
             to="/login"
           />
-          <Signup activeItem={activeItem} />
+          <SignupModal activeItem={activeItem} />
         </Menu.Menu>
       </Menu>
       {children}

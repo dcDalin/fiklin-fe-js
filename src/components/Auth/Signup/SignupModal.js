@@ -3,7 +3,7 @@ import { Menu, Modal, Header, Divider, Button, Icon } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-class Signup extends React.Component {
+class SignupModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = { open: false };
@@ -89,9 +89,9 @@ class Signup extends React.Component {
   }
 }
 
-Signup.propTypes = {
+SignupModal.propTypes = {
   activeItem: PropTypes.string.isRequired,
   history: PropTypes.instanceOf(Object).isRequired,
 };
 
-export default withRouter(Signup);
+export default withRouter(SignupModal);

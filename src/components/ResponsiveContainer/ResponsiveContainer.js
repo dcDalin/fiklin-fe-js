@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import DesktopContainer from '../../containers/desktopContainer';
-import MobileContainer from '../../containers/mobileContainer';
+import DesktopContainer from '../../pages/desktopContainer';
+import MobileContainer from '../../pages/mobileContainer';
 
 const ResponsiveContainer = ({ children }) => {
   const { pathname } = window.location;
