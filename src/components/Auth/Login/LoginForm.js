@@ -1,31 +1,40 @@
 import React from 'react';
-import { Card, Modal, Button, Form, Icon, Segment, Header } from 'semantic-ui-react';
+import {
+  Card,
+  Modal,
+  Divider,
+  Button,
+  Form,
+  Icon,
+  Segment,
+  Header,
+  Message,
+} from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import ForgotPass from '../ForgotPass';
 
-const SignupForm = ({ onSubmit, onChange, errors, loading, values }) => {
+const LoginForm = ({ onSubmit, onChange, errors, loading, values }) => {
   return (
     <Card centered style={{ marginTop: '50px', marginBottom: '50px', minWidth: '30%' }}>
       <Card.Content>
-        <Card.Header>Sign up</Card.Header>
+        <Card.Header>Log in</Card.Header>
       </Card.Content>
       <Card.Content extra>
         <Form onSubmit={onSubmit} noValidate loading={loading}>
-          <Form.Input
-            error={errors.username ? { content: errors.username, pointing: 'above' } : false}
-            type="text"
-            label="Username"
-            fluid
-            placeholder="Username"
-            name="username"
-            onChange={onChange}
-            value={values.username}
-          />
+          {errors.general ? (
+            <Message negative>
+              <Message.Header>{errors.general}</Message.Header>
+            </Message>
+          ) : (
+            ''
+          )}
+
           <Form.Input
             error={
               errors.emailAddress ? { content: errors.emailAddress, pointing: 'above' } : false
             }
             type="email"
-            label="Email Address"
+            label="Email"
             fluid
             placeholder="Email Address"
             name="emailAddress"
@@ -42,23 +51,12 @@ const SignupForm = ({ onSubmit, onChange, errors, loading, values }) => {
             onChange={onChange}
             value={values.password}
           />
-          <Form.Input
-            error={
-              errors.confirmPassword
-                ? { content: errors.confirmPassword, pointing: 'above' }
-                : false
-            }
-            type="password"
-            label="Confirm Password"
-            fluid
-            placeholder="Confrim Password"
-            name="confirmPassword"
-            onChange={onChange}
-            value={values.confirmPassword}
-          />
-          <Modal.Actions className="custom-forgot-pass-link"></Modal.Actions>
+          <Modal.Actions className="custom-forgot-pass-link">
+            <ForgotPass />
+          </Modal.Actions>
+          <Divider />
           <Button type="submit" color="purple">
-            Sign up
+            Log in
           </Button>
         </Form>
       </Card.Content>
@@ -74,11 +72,11 @@ const SignupForm = ({ onSubmit, onChange, errors, loading, values }) => {
           as={Link}
           to="/signup"
         >
-          <Icon name="google" /> Sign up with Google
+          <Icon name="google" /> Log in with Google
         </Button>
         <Card.Meta>
           <span>
-            Already have an account? <Link to="/login">Log in.</Link>
+            Don't have an account? <Link to="/signup">Sign up today.</Link>
           </span>
         </Card.Meta>
       </Segment>
@@ -86,4 +84,4 @@ const SignupForm = ({ onSubmit, onChange, errors, loading, values }) => {
   );
 };
 
-export default SignupForm;
+export default LoginForm;
