@@ -2,38 +2,36 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
-import { USER_LOGIN } from '../../../GraphQL/Mutations/Auth';
-import LoginForm from './LoginForm';
+import { USER_SIGNUP } from '../../../GraphQL/Mutations/Auth';
+import SignupForm from './SignupForm';
 import useForm from '../../../Util/hooks';
 
-const Login = props => {
+const Signup = props => {
   const [errors, setErrors] = useState({});
 
-  const { onChange, onSubmit, values } = useForm(signInUser, {
+  const { onChange, onSubmit, values } = useForm(registerUser, {
+    username: '',
     emailAddress: '',
     password: '',
+    confirmPassword: '',
   });
 
-  const [loginUser, { loading }] = useMutation(USER_LOGIN, {
+  const [addUser, { loading }] = useMutation(USER_SIGNUP, {
     update(_, result) {
       props.history.push('/');
     },
     onError(err) {
-      console.log(err.graphQLErrors[0].extensions.exception.errors);
       setErrors(err.graphQLErrors[0].extensions.exception.errors);
     },
-    variables: {
-      email: values.emailAddress,
-      password: values.password,
-    },
+    variables: values,
   });
 
-  function signInUser() {
-    loginUser();
+  function registerUser() {
+    addUser();
   }
 
   return (
-    <LoginForm
+    <SignupForm
       onSubmit={onSubmit}
       onChange={onChange}
       errors={errors}
@@ -43,4 +41,4 @@ const Login = props => {
   );
 };
 
-export default withRouter(Login);
+export default withRouter(Signup);

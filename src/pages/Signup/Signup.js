@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
-import SignupForm from '../../components/Auth/Signup/SignupForm';
+import Signup from '../../components/Auth/Signup/Signup';
 
 const SignupContainer = () => {
   useEffect(() => {
     document.title = 'Sign up | WIB';
   }, []);
-  return <SignupForm />;
+  return <Signup />;
 };
 
 export default SignupContainer;
