@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, Modal, Button, Form, Icon, Segment, Header } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const SignupForm = ({ onSubmit, onChange, errors, loading, values }) => {
   return (
@@ -84,6 +85,14 @@ const SignupForm = ({ onSubmit, onChange, errors, loading, values }) => {
       </Segment>
     </Card>
   );
+};
+
+SignupForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  errors: PropTypes.string.isRequired,
+  loading: PropTypes.bool.isRequired,
+  values: PropTypes.string.isRequired,
 };
 
 export default SignupForm;

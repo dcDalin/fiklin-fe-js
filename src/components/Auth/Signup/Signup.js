@@ -1,14 +1,19 @@
 /* eslint-disable react/no-unescaped-entities */
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { withRouter } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
+import PropTypes from 'prop-types';
 import { USER_SIGNUP } from '../../../GraphQL/Mutations/Auth';
 import SignupForm from './SignupForm';
 import useForm from '../../../Util/hooks';
+import { AuthContext } from '../../../context/auth';
 
 const Signup = props => {
+  const context = useContext(AuthContext);
+
   const [errors, setErrors] = useState({});
 
+  // eslint-disable-next-line no-use-before-define
   const { onChange, onSubmit, values } = useForm(registerUser, {
     username: '',
     emailAddress: '',
@@ -17,7 +22,13 @@ const Signup = props => {
   });
 
   const [addUser, { loading }] = useMutation(USER_SIGNUP, {
-    update(_, result) {
+    update(
+      _,
+      {
+        data: { userSignup: userData },
+      },
+    ) {
+      context.login(userData);
       props.history.push('/');
     },
     onError(err) {
@@ -39,6 +50,10 @@ const Signup = props => {
       values={values}
     />
   );
+};
+
+Signup.propTypes = {
+  history: PropTypes.node.isRequired,
 };
 
 export default withRouter(Signup);

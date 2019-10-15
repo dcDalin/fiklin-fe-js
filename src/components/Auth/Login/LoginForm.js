@@ -11,6 +11,7 @@ import {
   Message,
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import ForgotPass from '../ForgotPass';
 
 const LoginForm = ({ onSubmit, onChange, errors, loading, values }) => {
@@ -76,12 +77,20 @@ const LoginForm = ({ onSubmit, onChange, errors, loading, values }) => {
         </Button>
         <Card.Meta>
           <span>
-            Don't have an account? <Link to="/signup">Sign up today.</Link>
+            Do not have an account? <Link to="/signup">Sign up today.</Link>
           </span>
         </Card.Meta>
       </Segment>
     </Card>
   );
+};
+
+LoginForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  errors: PropTypes.string.isRequired,
+  loading: PropTypes.bool.isRequired,
+  values: PropTypes.string.isRequired,
 };
 
 export default LoginForm;

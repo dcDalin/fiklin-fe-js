@@ -1,21 +1,32 @@
 /* eslint-disable react/no-unescaped-entities */
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { withRouter } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
+import PropTypes from 'prop-types';
 import { USER_LOGIN } from '../../../GraphQL/Mutations/Auth';
 import LoginForm from './LoginForm';
 import useForm from '../../../Util/hooks';
+import { AuthContext } from '../../../context/auth';
 
 const Login = props => {
+  const context = useContext(AuthContext);
+
   const [errors, setErrors] = useState({});
 
-  const { onChange, onSubmit, values } = useForm(signInUser, {
+  // eslint-disable-next-line no-use-before-define
+  const { onChange, onSubmit, values } = useForm(loginUserCallback, {
     emailAddress: '',
     password: '',
   });
 
   const [loginUser, { loading }] = useMutation(USER_LOGIN, {
-    update(_, result) {
+    update(
+      _,
+      {
+        data: { userLogin: userData },
+      },
+    ) {
+      context.login(userData);
       props.history.push('/');
     },
     onError(err) {
@@ -27,7 +38,7 @@ const Login = props => {
     },
   });
 
-  function signInUser() {
+  function loginUserCallback() {
     loginUser();
   }
 
@@ -40,6 +51,10 @@ const Login = props => {
       values={values}
     />
   );
+};
+
+Login.propTypes = {
+  history: PropTypes.node.isRequired,
 };
 
 export default withRouter(Login);

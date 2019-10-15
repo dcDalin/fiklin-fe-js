@@ -1,49 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { Responsive, Menu, Image } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
-import getWidth from '../utils/getWidth';
-import WibLogo from '../assets/wib-logo.png';
-import SignupModal from '../components/Auth/Signup/SignupModal';
+import { AuthContext } from '../context/auth';
+import DesktopLoggedInNavBar from '../components/NavBar/DesktopLoggedInNavBar';
+import DesktopLoggedOutNavBar from '../components/NavBar/DesktopLoggedOutNavBar';
 
 const DesktopContainer = ({ children, activeItem, onClick }) => {
-  return (
-    <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth}>
-      <Menu borderless size="mini">
-        <Menu.Item
-          className="custom-menu-item"
-          name="home"
-          active={activeItem === 'home'}
-          onClick={onClick}
-          as={Link}
-          to="/"
-        >
-          <Image src={WibLogo} size="mini" verticalAlign="top" />
-        </Menu.Item>
+  const { user, logout } = useContext(AuthContext);
 
-        <Menu.Item
-          className="custom-menu-item"
-          name="explore"
-          active={activeItem === 'explore'}
-          onClick={onClick}
-          as={Link}
-          to="/explore"
-        />
-        <Menu.Menu position="right">
-          <Menu.Item
-            className="custom-menu-item"
-            name="login"
-            active={activeItem === 'login'}
-            onClick={onClick}
-            as={Link}
-            to="/login"
-          />
-          <SignupModal activeItem={activeItem} />
-        </Menu.Menu>
-      </Menu>
+  const menuBar = user ? (
+    <DesktopLoggedInNavBar activeItem={activeItem} onClick={onClick} logout={logout}>
       {children}
-    </Responsive>
+    </DesktopLoggedInNavBar>
+  ) : (
+    <DesktopLoggedOutNavBar activeItem={activeItem} onClick={onClick}>
+      {children}
+    </DesktopLoggedOutNavBar>
   );
+
+  return menuBar;
 };
 
 DesktopContainer.propTypes = {
