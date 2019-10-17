@@ -5,7 +5,7 @@ const initialState = {
   user: null,
 };
 
-const tokenTitle = 'jwtToken';
+const tokenTitle = 'wibJwtToken';
 
 if (localStorage.getItem(tokenTitle)) {
   const decodedToken = jwtDecode(localStorage.getItem(tokenTitle));

@@ -8,7 +8,7 @@ const DesktopContainer = ({ children, activeItem, onClick }) => {
   const { user, logout } = useContext(AuthContext);
 
   const menuBar = user ? (
-    <DesktopLoggedInNavBar activeItem={activeItem} onClick={onClick} logout={logout}>
+    <DesktopLoggedInNavBar activeItem={activeItem} onClick={onClick} logout={logout} user={user}>
       {children}
     </DesktopLoggedInNavBar>
   ) : (

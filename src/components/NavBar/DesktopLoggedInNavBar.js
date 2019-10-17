@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import getWidth from '../../utils/getWidth';
 import WibLogo from '../../assets/wib-logo.png';
+import UserAvatarDropdown from './UserAvatarDropdown';
 
-const DesktopLoggedInNavBar = ({ children, activeItem, onClick, logout }) => {
+const DesktopLoggedInNavBar = ({ children, activeItem, onClick, logout, user }) => {
   return (
     <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth}>
       <Menu borderless size="mini">
@@ -29,7 +30,9 @@ const DesktopLoggedInNavBar = ({ children, activeItem, onClick, logout }) => {
           to="/explore"
         />
         <Menu.Menu position="right">
-          <Menu.Item className="custom-menu-item" name="logout" onClick={logout} />
+          <Menu.Item>
+            <UserAvatarDropdown logout={logout} user={user.username} />
+          </Menu.Item>
         </Menu.Menu>
       </Menu>
       {children}
@@ -42,6 +45,7 @@ DesktopLoggedInNavBar.propTypes = {
   activeItem: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
 };
 
 export default DesktopLoggedInNavBar;

@@ -8,7 +8,7 @@ function AuthRoute({ component: Component, ...rest }) {
 
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
-    <Route {...rest} render={props => (user ? <Redirect to="/wib" /> : <Component {...props} />)} />
+    <Route {...rest} render={props => (user ? <Redirect to="/" /> : <Component {...props} />)} />
   );
 }
 

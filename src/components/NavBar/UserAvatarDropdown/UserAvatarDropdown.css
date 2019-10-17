@@ -1,0 +1,23 @@
+.custom-wib-span {
+  margin: auto;
+}
+
+.custom-wib-coin {
+  margin: 0.25rem 0.25rem 0.25rem 0rem !important;
+  padding: 0.25rem 0.25rem 0.25rem 0rem !important;
+}
+
+.custom-wib-currency {
+  margin-right: 0.25rem !important;
+  font-size: 80% !important;
+  font-style: italic !important;
+}
+
+.custom-wib-amount {
+  font-weight: bolder;
+  color: rgba(48, 51, 107, 1) !important;
+}
+
+.custom-divider {
+  margin: 0px !important;
+}
