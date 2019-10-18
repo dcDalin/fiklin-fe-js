@@ -5,13 +5,15 @@ import { createHttpLink } from 'apollo-link-http';
 import { ApolloProvider } from '@apollo/react-hooks';
 import App from '../App';
 
-const httpLink = createHttpLink({
+const cache = new InMemoryCache();
+
+const link = createHttpLink({
   uri: 'https://staging-wib-affiliate-ql.herokuapp.com/graphql',
 });
 
 const client = new ApolloClient({
-  link: httpLink,
-  cache: new InMemoryCache(),
+  link,
+  cache,
 });
 
 export default (

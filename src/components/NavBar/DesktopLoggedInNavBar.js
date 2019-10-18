@@ -45,7 +45,15 @@ DesktopLoggedInNavBar.propTypes = {
   activeItem: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired,
+  user: PropTypes.shape({
+    id: PropTypes.string,
+    token: PropTypes.string,
+    username: PropTypes.string,
+    email: PropTypes.shape({
+      emailAddress: PropTypes.string,
+      isVerified: PropTypes.bool,
+    }),
+  }).isRequired,
 };
 
 export default DesktopLoggedInNavBar;

@@ -1,12 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { AuthContext } from '../context/auth';
 import DesktopLoggedInNavBar from '../components/NavBar/DesktopLoggedInNavBar';
 import DesktopLoggedOutNavBar from '../components/NavBar/DesktopLoggedOutNavBar';
 
-const DesktopContainer = ({ children, activeItem, onClick }) => {
-  const { user, logout } = useContext(AuthContext);
-
+const DesktopContainer = ({ user, logout, children, activeItem, onClick }) => {
   const menuBar = user ? (
     <DesktopLoggedInNavBar activeItem={activeItem} onClick={onClick} logout={logout} user={user}>
       {children}
@@ -21,6 +18,16 @@ const DesktopContainer = ({ children, activeItem, onClick }) => {
 };
 
 DesktopContainer.propTypes = {
+  user: PropTypes.shape({
+    id: PropTypes.string,
+    token: PropTypes.string,
+    username: PropTypes.string,
+    email: PropTypes.shape({
+      emailAddress: PropTypes.string,
+      isVerified: PropTypes.bool,
+    }),
+  }).isRequired,
+  logout: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
   activeItem: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,

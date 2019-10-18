@@ -1,5 +1,6 @@
 import React from 'react';
 import { Dropdown } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 import DropDownTrigger from './DropDownTrigger';
 import './UserAvatarDropdown.css';
 
@@ -19,5 +20,10 @@ const UserAvatarDropdown = ({ logout, user }) => (
     </Dropdown.Menu>
   </Dropdown>
 );
+
+UserAvatarDropdown.propTypes = {
+  logout: PropTypes.func.isRequired,
+  user: PropTypes.string.isRequired,
+};
 
 export default UserAvatarDropdown;
