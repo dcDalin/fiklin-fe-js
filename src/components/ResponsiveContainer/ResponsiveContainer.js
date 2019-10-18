@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import DesktopContainer from '../../pages/desktopContainer';
 import MobileContainer from '../../pages/mobileContainer';
+import { AuthContext } from '../../context/auth';
 
 const ResponsiveContainer = ({ children }) => {
+  const { user, logout } = useContext(AuthContext);
   const { pathname } = window.location;
 
   const path = pathname === '/' ? 'home' : pathname.substr(1);
@@ -12,10 +14,20 @@ const ResponsiveContainer = ({ children }) => {
   const handleItemClick = (e, { name }) => setActiveItem(name);
   return (
     <>
-      <DesktopContainer activeItem={activeItem} onClick={handleItemClick}>
+      <DesktopContainer
+        user={user}
+        logout={logout}
+        activeItem={activeItem}
+        onClick={handleItemClick}
+      >
         {children}
       </DesktopContainer>
-      <MobileContainer activeItem={activeItem} onClick={handleItemClick}>
+      <MobileContainer
+        user={user}
+        logout={logout}
+        activeItem={activeItem}
+        onClick={handleItemClick}
+      >
         {children}
       </MobileContainer>
     </>

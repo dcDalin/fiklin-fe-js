@@ -5,7 +5,6 @@ import { AuthContext } from '../context/auth';
 
 function AuthRoute({ component: Component, ...rest }) {
   const { user } = useContext(AuthContext);
-
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
     <Route {...rest} render={props => (user ? <Redirect to="/" /> : <Component {...props} />)} />
@@ -13,7 +12,7 @@ function AuthRoute({ component: Component, ...rest }) {
 }
 
 AuthRoute.propTypes = {
-  component: PropTypes.node.isRequired,
+  component: PropTypes.func.isRequired,
 };
 
 export default AuthRoute;
