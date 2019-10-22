@@ -1,6 +1,7 @@
 import React from 'react';
 import { Dropdown } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import DropDownTrigger from './DropDownTrigger';
 import './UserAvatarDropdown.css';
 
@@ -14,7 +15,7 @@ const UserAvatarDropdown = ({ logout, user }) => (
         </span>
       </Dropdown.Item>
       <Dropdown.Divider className="custom-divider" />
-      <Dropdown.Item text="My Profile" />
+      <Dropdown.Item text="My Profile" as={Link} to="/profile" />
       <Dropdown.Item text="Save as" />
       <Dropdown.Item text="Log Out" onClick={logout} />
     </Dropdown.Menu>
