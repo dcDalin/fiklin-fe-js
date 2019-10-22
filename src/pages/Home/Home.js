@@ -1,5 +1,5 @@
 import React, { useEffect, createRef } from 'react';
-import { Container, Ref, Header, Segment, Form, Item, Sticky, Label } from 'semantic-ui-react';
+import { Container, Ref, Header, Segment, Form, Item, Sticky } from 'semantic-ui-react';
 import CardItem from './CardItem';
 
 const Home = () => {

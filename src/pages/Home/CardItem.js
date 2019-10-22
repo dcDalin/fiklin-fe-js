@@ -1,14 +1,5 @@
 import React from 'react';
-import {
-  Container,
-  Header,
-  Segment,
-  Form,
-  Item,
-  Sticky,
-  Label,
-  Statistic,
-} from 'semantic-ui-react';
+import { Item, Label, Statistic } from 'semantic-ui-react';
 
 const CardItem = () => {
   const paragraph =

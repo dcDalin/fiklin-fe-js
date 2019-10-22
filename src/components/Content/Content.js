@@ -5,6 +5,7 @@ import Explore from '../../pages/Explore';
 import Login from '../../pages/Login';
 import Signup from '../../pages/Signup';
 import AuthRoute from '../../Util/AuthRoute';
+import Profile from '../../pages/Profile';
 
 const Content = () => (
   <>
@@ -12,6 +13,7 @@ const Content = () => (
     <Route path="/explore" component={Explore} />
     <AuthRoute path="/login" component={Login} />
     <AuthRoute path="/signup" component={Signup} />
+    <Route path="/profile" component={Profile} />
   </>
 );
 
