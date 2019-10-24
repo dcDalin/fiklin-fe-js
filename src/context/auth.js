@@ -1,5 +1,7 @@
 import React, { createContext, useReducer } from 'react';
 import jwtDecode from 'jwt-decode';
+import { useQuery } from '@apollo/react-hooks';
+import { LOGGED_IN_USER } from '../GraphQL/Queries/User';
 
 const initialState = {
   user: null,
@@ -44,6 +46,7 @@ function authReducer(state, action) {
 
 function AuthProvider(props) {
   const [state, dispatch] = useReducer(authReducer, initialState);
+  const { client } = useQuery(LOGGED_IN_USER);
 
   function login(userData) {
     localStorage.setItem(tokenTitle, userData.token);
@@ -54,6 +57,7 @@ function AuthProvider(props) {
   }
   function logout() {
     localStorage.removeItem(tokenTitle);
+    client.resetStore();
     dispatch({
       type: 'LOGOUT',
     });
@@ -63,4 +67,4 @@ function AuthProvider(props) {
   return <AuthContext.Provider value={{ user: state.user, login, logout }} {...props} />;
 }
 
-export { AuthContext, AuthProvider };
+export { AuthContext, AuthProvider, tokenTitle };
