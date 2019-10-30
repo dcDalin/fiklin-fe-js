@@ -5,6 +5,7 @@ import { LOGGED_IN_USER } from '../GraphQL/Queries/User';
 
 const initialState = {
   user: null,
+  me: null,
 };
 
 const tokenTitle = 'wibJwtToken';
@@ -46,7 +47,12 @@ function authReducer(state, action) {
 
 function AuthProvider(props) {
   const [state, dispatch] = useReducer(authReducer, initialState);
-  const { client } = useQuery(LOGGED_IN_USER);
+  const { loading, client, data } = useQuery(LOGGED_IN_USER);
+
+  if (loading) return <p>Loading...</p>;
+  if (data) {
+    initialState.me = data.me;
+  }
 
   function login(userData) {
     localStorage.setItem(tokenTitle, userData.token);
@@ -62,9 +68,10 @@ function AuthProvider(props) {
       type: 'LOGOUT',
     });
   }
-
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  return <AuthContext.Provider value={{ user: state.user, login, logout }} {...props} />;
+  return (
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <AuthContext.Provider value={{ user: state.user, me: state.me, login, logout }} {...props} />
+  );
 }
 
 export { AuthContext, AuthProvider, tokenTitle };

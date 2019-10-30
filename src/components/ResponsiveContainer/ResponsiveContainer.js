@@ -5,7 +5,7 @@ import MobileContainer from '../../pages/mobileContainer';
 import { AuthContext } from '../../context/auth';
 
 const ResponsiveContainer = ({ children }) => {
-  const { user, logout } = useContext(AuthContext);
+  const { logout, me } = useContext(AuthContext);
   const { pathname } = window.location;
 
   const path = pathname === '/' ? 'home' : pathname.substr(1);
@@ -14,20 +14,10 @@ const ResponsiveContainer = ({ children }) => {
   const handleItemClick = (e, { name }) => setActiveItem(name);
   return (
     <>
-      <DesktopContainer
-        user={user}
-        logout={logout}
-        activeItem={activeItem}
-        onClick={handleItemClick}
-      >
+      <DesktopContainer user={me} logout={logout} activeItem={activeItem} onClick={handleItemClick}>
         {children}
       </DesktopContainer>
-      <MobileContainer
-        user={user}
-        logout={logout}
-        activeItem={activeItem}
-        onClick={handleItemClick}
-      >
+      <MobileContainer user={me} logout={logout} activeItem={activeItem} onClick={handleItemClick}>
         {children}
       </MobileContainer>
     </>
