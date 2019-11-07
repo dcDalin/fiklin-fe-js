@@ -19,9 +19,7 @@ const Home = () => {
             <Segment raised>
               <Form>
                 <Form.Group widths="equal">
-                  <Form.Input fluid placeholder="From" />
-                  <Form.Input fluid placeholder="To" />
-                  <Form.Input fluid placeholder="Date" />
+                  <Form.Input fluid placeholder="Search" />
                 </Form.Group>
               </Form>
             </Segment>
