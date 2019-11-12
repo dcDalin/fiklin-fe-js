@@ -1,19 +1,14 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React, { useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { AuthContext } from '../context/auth';
-import checkRoles from '../utils/checkRoles';
 
 function ProtectedRoute({ component: Component, ...rest }) {
-  const { me } = useContext(AuthContext);
-
-  const checkRolesRes = checkRoles(me.roles, rest.roles);
-
-  if (checkRolesRes) {
-    return <Route {...rest} render={props => <Component {...props} />} />;
-  }
-  return <Route {...rest} render={() => <Redirect to="/" />} />;
+  const { user } = useContext(AuthContext);
+  return (
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <Route {...rest} render={props => (user ? <Component {...props} /> : <Redirect to="/" />)} />
+  );
 }
 
 ProtectedRoute.propTypes = {

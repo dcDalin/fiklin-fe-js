@@ -47,12 +47,7 @@ function authReducer(state, action) {
 
 function AuthProvider(props) {
   const [state, dispatch] = useReducer(authReducer, initialState);
-  const { loading, client, data } = useQuery(LOGGED_IN_USER);
-
-  if (loading) return <p>Loading...</p>;
-  if (data) {
-    initialState.me = data.me;
-  }
+  const { client } = useQuery(LOGGED_IN_USER);
 
   function login(userData) {
     localStorage.setItem(tokenTitle, userData.token);
