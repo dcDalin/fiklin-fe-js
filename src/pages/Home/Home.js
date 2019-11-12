@@ -19,11 +19,8 @@ const Home = () => {
         book your seat.
       </h2>
       <h3 className="custom-happening-soon">Happening soon</h3>
-      <Segment style={{ padding: '0px', margin: '0px', border: '0px', boxShadow: 'none' }}>
-        <Item.Group>
-          <CardItem />
-        </Item.Group>
-      </Segment>
+
+      <CardItem />
     </Container>
   );
 };

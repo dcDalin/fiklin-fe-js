@@ -23,6 +23,7 @@
   margin-bottom: 25px;
   transition: all 300ms ease-out;
   width: 100%;
+  margin-bottom: 30px;
 }
 
 .card-media:hover {
@@ -210,4 +211,31 @@
   padding: 10px 20px 10px 20px;
   background-color: #41c1f2;
   border-radius: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+  .card-media {
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    height: 400px;
+    margin-bottom: 25px;
+    transition: all 300ms ease-out;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  .card-media-object-container {
+    background: none;
+    float: none;
+    height: 50%;
+    width: 100%;
+    position: relative;
+  }
+  .card-media-body {
+    background-color: #fff;
+    float: none;
+    height: 50%;
+    padding: 12px 15px;
+    position: relative;
+    width: 100%;
+  }
 }
