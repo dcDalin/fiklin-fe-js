@@ -5,11 +5,12 @@ import PropTypes from 'prop-types';
 import getWidth from '../../utils/getWidth';
 import SignupModal from '../Auth/Signup/SignupModal';
 import WibLogo from '../../assets/wib-logo.png';
+import './NavBar.css';
 
 const DesktopLoggedOutNavBar = ({ children, activeItem, onClick }) => {
   return (
     <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth}>
-      <Menu borderless size="mini">
+      <Menu borderless className="custom-nav">
         <Menu.Item
           className="custom-menu-item"
           name="home"

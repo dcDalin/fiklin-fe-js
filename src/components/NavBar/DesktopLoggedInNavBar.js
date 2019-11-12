@@ -9,7 +9,7 @@ import UserAvatarDropdown from './UserAvatarDropdown';
 const DesktopLoggedInNavBar = ({ children, activeItem, onClick, logout, user }) => {
   return (
     <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth}>
-      <Menu borderless size="mini">
+      <Menu borderless className="custom-nav">
         <Menu.Item
           className="custom-menu-item"
           name="home"
