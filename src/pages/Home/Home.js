@@ -1,37 +1,29 @@
-import React, { useEffect, createRef } from 'react';
-import { Container, Ref, Header, Segment, Form, Item, Sticky } from 'semantic-ui-react';
+import React, { useEffect } from 'react';
+import { Container, Segment, Item } from 'semantic-ui-react';
 import CardItem from './CardItem';
+import './Home.css';
 
 const Home = () => {
   useEffect(() => {
     document.title = 'Go have FUN | WIB';
   }, []);
 
-  const contextRef = createRef();
   return (
     <Container>
-      <Header as="h1" icon textAlign="center" size="huge" style={{ padding: '40px' }}>
-        <Header.Content>Find Your Next Adventure</Header.Content>
-      </Header>
-      <Ref innerRef={contextRef}>
-        <Segment style={{ boxShadow: 'none', border: 'none' }}>
-          <Sticky context={contextRef}>
-            <Segment raised>
-              <Form>
-                <Form.Group widths="equal">
-                  <Form.Input fluid placeholder="Search" />
-                </Form.Group>
-              </Form>
-            </Segment>
-          </Sticky>
-          <Header as="h3" icon textAlign="left" size="tiny">
-            <Header.Content>Happening soon</Header.Content>
-          </Header>
-          <Item.Group>
-            <CardItem />
-          </Item.Group>
-        </Segment>
-      </Ref>
+      <h2 className="custom-title">
+        <span>Group tours made so easy...</span>
+        <br />
+        <br />
+        Go ahead,
+        <br />
+        book your seat.
+      </h2>
+      <h3 className="custom-happening-soon">Happening soon</h3>
+      <Segment style={{ padding: '0px', margin: '0px', border: '0px', boxShadow: 'none' }}>
+        <Item.Group>
+          <CardItem />
+        </Item.Group>
+      </Segment>
     </Container>
   );
 };
