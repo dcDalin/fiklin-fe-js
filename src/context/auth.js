@@ -5,7 +5,6 @@ import { LOGGED_IN_USER } from '../GraphQL/Queries/User';
 
 const initialState = {
   user: null,
-  me: null,
 };
 
 const tokenTitle = 'wibJwtToken';
@@ -65,7 +64,7 @@ function AuthProvider(props) {
   }
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
-    <AuthContext.Provider value={{ user: state.user, me: state.me, login, logout }} {...props} />
+    <AuthContext.Provider value={{ user: state.user, login, logout }} {...props} />
   );
 }
 

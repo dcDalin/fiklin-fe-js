@@ -1,37 +1,13 @@
 body {
-	font-family: 'Montserrat', sans-serif;
-}
-
-.custom-menu-item {
-	transform: translateZ(0) !important;
-	backface-visibility: hidden !important;
-	-moz-osx-font-smoothing: grayscale !important;
-	transition-duration: 0.5s !important;
-	transition-property: transform !important;
-	font-weight: bolder !important;
-	opacity: 0.8;
-}
-
-.custom-menu-item:hover,
-.custom-menu-item:focus,
-.custom-menu-item:active {
-	transform: scale(1.025) !important;
-	outline: none !important;
-}
-
-.link-button {
-	background: none !important;
-	border: none;
-	padding: 0 !important;
-	/*optional*/
-	font-family: arial, sans-serif;
-	/*input has OS specific font-family*/
-	color: #069 !important;
-	text-decoration: underline;
-	cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .custom-mobile-menu {
-	border: none !important;
-	box-shadow: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.card {
+  border-radius: 2px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12) !important;
 }

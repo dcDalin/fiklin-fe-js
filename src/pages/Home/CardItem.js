@@ -113,8 +113,12 @@ const CardItem = () => {
             </div>
           </div>
           <span className="card-media-body-heading">
-            DAY // NIGHT - Tycho (Live) w/ Gold Panda, Com Truise + More at 1015 Folsom
+            Elephant Orphanage and Giraffe Centre in Nairobi
           </span>
+          <p>
+            By including all transportation and entrance fees, this guided tour of Nairobi wildlife
+            makes it as easy as possible to see...
+          </p>
           <div className="card-media-body-supporting-bottom">
             <span className="card-media-body-supporting-bottom-text subtle">
               1015 Folsom, San Francisco, CA

@@ -18,5 +18,13 @@ const LOGGED_IN_USER = gql`
   }
 `;
 
+const LOGGED_IN_USER_ROLES = gql`
+  query LoggedInUserRoles {
+    me {
+      roles
+    }
+  }
+`;
+
 // eslint-disable-next-line import/prefer-default-export
-export { LOGGED_IN_USER };
+export { LOGGED_IN_USER, LOGGED_IN_USER_ROLES };

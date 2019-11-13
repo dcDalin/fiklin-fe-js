@@ -22,6 +22,7 @@ const USER_SIGNUP = gql`
         emailAddress
         isVerified
       }
+      roles
     }
   }
 `;
@@ -36,6 +37,7 @@ const USER_LOGIN = gql`
         emailAddress
         isVerified
       }
+      roles
     }
   }
 `;

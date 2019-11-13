@@ -172,6 +172,9 @@
 .card-media-body-heading {
   display: block;
   margin-top: 10px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-size: 1.5em;
 }
 
 .card-media-body-supporting-bottom {

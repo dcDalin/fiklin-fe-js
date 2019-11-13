@@ -19,7 +19,7 @@ const MobileLoggedInNavBar = ({ children, activeItem, onClick, logout, user }) =
             as={Link}
             to="/"
           >
-            <Image size="mini" src={WibLogo} verticalAlign="top" />
+            <Image className="custom-mobile-logo" size="mini" src={WibLogo} verticalAlign="top" />
           </Menu.Item>
           <Menu.Item position="right">
             <UserAvatarDropdown logout={logout} user={user.username} />

@@ -7,3 +7,7 @@
   box-shadow: none !important;
   border-radius: 0px !important;
 }
+
+.custom-mobile-logo {
+  padding-left: 0 !important;
+}

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import getWidth from '../../utils/getWidth';
 import SignupModal from '../Auth/Signup/SignupModal';
 import WibLogo from '../../assets/wib-logo.png';
+import './NavBar.css';
 
 const MobileLoggedOutNavBar = ({ children, activeItem, onClick }) => {
   return (
@@ -12,7 +13,7 @@ const MobileLoggedOutNavBar = ({ children, activeItem, onClick }) => {
       <Container>
         <Menu borderless size="mini" className="custom-mobile-menu">
           <Menu.Item
-            className="custom-menu-item"
+            className="custom-mobile-logo"
             name="home"
             active={activeItem === 'home'}
             onClick={onClick}

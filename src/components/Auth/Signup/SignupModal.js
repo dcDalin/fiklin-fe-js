@@ -40,7 +40,6 @@ class SignupModal extends React.Component {
     return (
       <>
         <Menu.Item
-          className="custom-menu-item"
           name="signup"
           active={activeItem === 'signup'}
           onClick={this.closeConfigShow(true, false)}
