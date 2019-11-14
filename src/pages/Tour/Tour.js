@@ -1,14 +1,19 @@
 import React from 'react';
 import { Tab, Container } from 'semantic-ui-react';
+import BusLayout from './BusLayout';
 
 const panes = [
   {
-    menuItem: 'Book Seat',
-    render: () => <Tab.Pane attached={false}>Book Seat</Tab.Pane>,
+    menuItem: 'Tab 1',
+    render: () => (
+      <Tab.Pane attached={false}>
+        <BusLayout />
+      </Tab.Pane>
+    ),
   },
   {
-    menuItem: 'More Info',
-    render: () => <Tab.Pane attached={false}>More Info</Tab.Pane>,
+    menuItem: 'Tab 2',
+    render: () => <Tab.Pane attached={false}>Tab 2 Content</Tab.Pane>,
   },
 ];
 

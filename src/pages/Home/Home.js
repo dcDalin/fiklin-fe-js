@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Container, Segment, Item } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 import CardItem from './CardItem';
 import './Home.css';
 
