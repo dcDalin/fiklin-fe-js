@@ -12,7 +12,6 @@
   align-items: center;
   background: lightgray;
   width: 200px;
-  margin: auto;
   transform: skew(-20deg);
 }
 

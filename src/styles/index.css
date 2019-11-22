@@ -11,3 +11,35 @@ body {
   border-radius: 2px !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12) !important;
 }
+
+.custom-form-title {
+  font-size: 20px !important;
+  font-weight: 100;
+  color: #484848;
+}
+
+.custom-success-button {
+  color: #ecf0f1 !important;
+  font-weight: 800 !important;
+  text-decoration: none;
+  padding: 10px 20px 10px 20px !important;
+  background-color: #10ac84 !important;
+  border-radius: 20px !important;
+  opacity: 0.8;
+}
+
+.custom-success-button:hover {
+  opacity: 1;
+}
+
+.link-button {
+  background: none !important;
+  border: none;
+  padding: 0 !important;
+  /*optional*/
+  font-family: arial, sans-serif;
+  /*input has OS specific font-family*/
+  color: #069 !important;
+  text-decoration: underline;
+  cursor: pointer;
+}

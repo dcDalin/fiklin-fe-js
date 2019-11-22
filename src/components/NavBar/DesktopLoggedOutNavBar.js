@@ -22,14 +22,6 @@ const DesktopLoggedOutNavBar = ({ children, activeItem, onClick }) => {
           <Image src={WibLogo} size="mini" verticalAlign="top" />
         </Menu.Item>
 
-        <Menu.Item
-          className="custom-menu-item"
-          name="explore"
-          active={activeItem === 'explore'}
-          onClick={onClick}
-          as={Link}
-          to="/explore"
-        />
         <Menu.Menu position="right">
           <Menu.Item
             className="custom-menu-item"

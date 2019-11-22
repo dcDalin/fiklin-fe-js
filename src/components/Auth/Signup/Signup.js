@@ -14,31 +14,34 @@ const Signup = props => {
   const [errors, setErrors] = useState({});
 
   // eslint-disable-next-line no-use-before-define
-  const { onChange, onSubmit, values } = useForm(registerUser, {
+  const { onChange, onSubmit, values } = useForm(signUpUserCallback, {
     username: '',
     emailAddress: '',
     password: '',
     confirmPassword: '',
   });
 
-  const [addUser, { loading }] = useMutation(USER_SIGNUP, {
-    update(
-      _,
-      {
-        data: { userSignup: userData },
-      },
-    ) {
+  const [signUpUser, { loading }] = useMutation(USER_SIGNUP, {
+    update(_, { data: { userSignUp: userData } }) {
       context.login(userData);
       props.history.push('/');
     },
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.exception.errors);
+      setTimeout(() => {
+        setErrors({});
+      }, 3000);
     },
-    variables: values,
+    variables: {
+      username: values.username,
+      emailAddress: values.emailAddress,
+      password: values.password,
+      confirmPassword: values.confirmPassword,
+    },
   });
 
-  function registerUser() {
-    addUser();
+  function signUpUserCallback() {
+    signUpUser();
   }
 
   return (

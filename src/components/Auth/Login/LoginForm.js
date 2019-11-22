@@ -8,30 +8,32 @@ import {
   Icon,
   Segment,
   Header,
-  Message,
   Container,
 } from 'semantic-ui-react';
+import { SemanticToastContainer, toast } from 'react-semantic-toasts';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ForgotPass from '../ForgotPass';
 
 const LoginForm = ({ onSubmit, onChange, errors, loading, values }) => {
+  if (errors.general) {
+    toast({
+      title: 'Sorry',
+      description: <p>{errors.general}</p>,
+      type: 'error',
+      time: 3000,
+    });
+  }
+
   return (
-    <Container>
+    <Container style={{ width: '30%' }}>
+      <SemanticToastContainer />
       <Card centered style={{ marginTop: '50px', marginBottom: '50px', minWidth: '30%' }}>
         <Card.Content>
-          <Card.Header>Log in</Card.Header>
+          <Card.Header className="custom-form-title">Log in</Card.Header>
         </Card.Content>
         <Card.Content extra>
           <Form onSubmit={onSubmit} noValidate loading={loading}>
-            {errors.general ? (
-              <Message negative>
-                <Message.Header>{errors.general}</Message.Header>
-              </Message>
-            ) : (
-              ''
-            )}
-
             <Form.Input
               error={
                 errors.emailAddress ? { content: errors.emailAddress, pointing: 'above' } : false
@@ -58,7 +60,7 @@ const LoginForm = ({ onSubmit, onChange, errors, loading, values }) => {
               <ForgotPass />
             </Modal.Actions>
             <Divider />
-            <Button type="submit" color="purple">
+            <Button className="custom-success-button" type="submit" color="purple">
               Log in
             </Button>
           </Form>

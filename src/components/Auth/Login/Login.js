@@ -20,17 +20,15 @@ const Login = props => {
   });
 
   const [loginUser, { loading }] = useMutation(USER_LOGIN, {
-    update(
-      _,
-      {
-        data: { userLogin: userData },
-      },
-    ) {
+    update(_, { data: { userLogin: userData } }) {
       context.login(userData);
       props.history.push('/');
     },
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.exception.errors);
+      setTimeout(() => {
+        setErrors({});
+      }, 3000);
     },
     variables: {
       email: values.emailAddress,

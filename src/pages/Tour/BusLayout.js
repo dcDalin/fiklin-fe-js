@@ -1,13 +1,11 @@
 import React from 'react';
 import './BusLayout.css';
-import { Image, Popup, Checkbox } from 'semantic-ui-react';
-import Wheel from '../../assets/svg/wheel.svg';
 
 const BusLayout = () => {
   return (
     <div className="bus-wrapper">
       <div className="grid-container">
-        <Popup content="Driver" trigger={<Checkbox className="seat" />} />
+        <div className="seat">1</div>
         <div className="seat">2</div>
         <div className="seat">3</div>
         <div className="seat">4</div>
@@ -35,12 +33,7 @@ const BusLayout = () => {
         <div className="seat">26</div>
         <div className="seat">27</div>
         <div className="seat">28</div>
-        <div className="seat">
-          <Popup
-            content="Driver"
-            trigger={<Image className="custom-mobile-logo" size="mini" src={Wheel} />}
-          />
-        </div>
+        <div className="seat">29</div>
         <div className="seat">30</div>
         <div className="seat">31</div>
         <div className="seat">32</div>
