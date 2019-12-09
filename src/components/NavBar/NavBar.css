@@ -1,0 +1,13 @@
+.custom-nav {
+  border: 1px solid #dce0e0 !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-left: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  border-radius: 0px !important;
+}
+
+.custom-mobile-logo {
+  padding-left: 0 !important;
+}

@@ -1,61 +1,58 @@
 /* eslint-disable react/no-unescaped-entities */
-import React from 'react';
-import { Card, Modal, Divider, Button, Form, Icon, Segment, Header } from 'semantic-ui-react';
-import { withRouter, Link } from 'react-router-dom';
-import ForgotPass from '../ForgotPass';
+import React, { useState, useContext } from 'react';
+import { withRouter } from 'react-router-dom';
+import { useMutation } from '@apollo/react-hooks';
+import PropTypes from 'prop-types';
+import { USER_LOGIN } from '../../../GraphQL/Mutations/Auth';
+import LoginForm from './LoginForm';
+import useForm from '../../../Util/hooks';
+import { AuthContext } from '../../../context/auth';
 
-const Login = () => {
+const Login = props => {
+  const context = useContext(AuthContext);
+
+  const [errors, setErrors] = useState({});
+
+  // eslint-disable-next-line no-use-before-define
+  const { onChange, onSubmit, values } = useForm(loginUserCallback, {
+    emailAddress: '',
+    password: '',
+  });
+
+  const [loginUser, { loading }] = useMutation(USER_LOGIN, {
+    update(_, { data: { userLogin: userData } }) {
+      context.login(userData);
+      props.history.push('/');
+    },
+    onError(err) {
+      setErrors(err.graphQLErrors[0].extensions.exception.errors);
+      setTimeout(() => {
+        setErrors({});
+      }, 3000);
+    },
+    variables: {
+      email: values.emailAddress,
+      password: values.password,
+    },
+  });
+
+  function loginUserCallback() {
+    loginUser();
+  }
+
   return (
-    <Card centered style={{ marginTop: '50px', marginBottom: '50px', minWidth: '30%' }}>
-      <Card.Content>
-        <Card.Header>Log in</Card.Header>
-        <Card.Meta>
-          <span>
-            Don't have an account? <Link to="/signup">Sign up today.</Link>
-          </span>
-        </Card.Meta>
-      </Card.Content>
-      <Card.Content extra>
-        <Form error noValidate>
-          <Form.Input
-            type="email"
-            label="Email"
-            fluid
-            placeholder="Email Address"
-            name="phoneNumber"
-          />
-          <Form.Input
-            type="password"
-            label="Password"
-            fluid
-            placeholder="Password"
-            name="password"
-          />
-          <Modal.Actions className="custom-forgot-pass-link">
-            <ForgotPass />
-          </Modal.Actions>
-          <Divider />
-          <Button type="submit" color="purple">
-            Log in
-          </Button>
-        </Form>
-      </Card.Content>
-      <Segment
-        textAlign="center"
-        style={{ border: 'none', boxShadow: 'none', backgroundColor: '#ecf0f1' }}
-      >
-        <Header as="h5">OR</Header>
-        <Button
-          color="google plus"
-          style={{ margin: '20px', letterSpacing: '1px' }}
-          as={Link}
-          to="/signup"
-        >
-          <Icon name="google" /> Log in with Google
-        </Button>
-      </Segment>
-    </Card>
+    <LoginForm
+      onSubmit={onSubmit}
+      onChange={onChange}
+      errors={errors}
+      loading={loading}
+      values={values}
+    />
   );
+};
+
+Login.propTypes = {
+  history: PropTypes.node.isRequired,
 };
 
 export default withRouter(Login);

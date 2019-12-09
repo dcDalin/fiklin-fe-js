@@ -1,0 +1,18 @@
+.custom-title {
+  font-size: 46px;
+  font-weight: 100;
+  color: #484848;
+  margin-bottom: 60px;
+  padding-top: 40px;
+  padding-bottom: 20px;
+}
+.custom-title span {
+  font-weight: 800;
+  color: #ff5a5f;
+}
+
+.custom-happening-soon {
+  font-weight: 200;
+  font-size: 20px;
+  color: #484848;
+}

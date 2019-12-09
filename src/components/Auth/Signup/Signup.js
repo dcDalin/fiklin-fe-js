@@ -1,97 +1,62 @@
-import React from 'react';
-import { Menu, Modal, Header, Divider, Button, Icon } from 'semantic-ui-react';
+/* eslint-disable react/no-unescaped-entities */
+import React, { useState, useContext } from 'react';
 import { withRouter } from 'react-router-dom';
+import { useMutation } from '@apollo/react-hooks';
 import PropTypes from 'prop-types';
+import { USER_SIGNUP } from '../../../GraphQL/Mutations/Auth';
+import SignupForm from './SignupForm';
+import useForm from '../../../Util/hooks';
+import { AuthContext } from '../../../context/auth';
 
-class Signup extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { open: false };
+const Signup = props => {
+  const context = useContext(AuthContext);
+
+  const [errors, setErrors] = useState({});
+
+  // eslint-disable-next-line no-use-before-define
+  const { onChange, onSubmit, values } = useForm(signUpUserCallback, {
+    username: '',
+    emailAddress: '',
+    password: '',
+    confirmPassword: '',
+  });
+
+  const [signUpUser, { loading }] = useMutation(USER_SIGNUP, {
+    update(_, { data: { userSignUp: userData } }) {
+      context.login(userData);
+      props.history.push('/');
+    },
+    onError(err) {
+      setErrors(err.graphQLErrors[0].extensions.exception.errors);
+      setTimeout(() => {
+        setErrors({});
+      }, 3000);
+    },
+    variables: {
+      username: values.username,
+      emailAddress: values.emailAddress,
+      password: values.password,
+      confirmPassword: values.confirmPassword,
+    },
+  });
+
+  function signUpUserCallback() {
+    signUpUser();
   }
 
-  closeConfigShow = (closeOnEscape, closeOnDimmerClick) => () => {
-    this.setState({ closeOnEscape, closeOnDimmerClick, open: true });
-  };
-
-  open = () => this.setState({ open: true });
-
-  close = () => this.setState({ open: false });
-
-  nextPath = path => {
-    const { history } = this.props;
-    history.push(path);
-  };
-
-  handleSignupEvent = evt => {
-    evt.preventDefault();
-    this.close();
-    this.nextPath('/signup');
-  };
-
-  handleLoginEvent = evt => {
-    evt.preventDefault();
-    this.close();
-    this.nextPath('/login');
-  };
-
-  render() {
-    const { open, closeOnEscape, closeOnDimmerClick } = this.state;
-    const { activeItem } = this.props;
-    return (
-      <>
-        <Menu.Item
-          className="custom-menu-item"
-          name="signup"
-          active={activeItem === 'signup'}
-          onClick={this.closeConfigShow(true, false)}
-          animated
-        />
-
-        <Modal
-          size="mini"
-          open={open}
-          closeOnEscape={closeOnEscape}
-          closeOnDimmerClick={closeOnDimmerClick}
-          onClose={this.close}
-          closeIcon
-        >
-          <Modal.Header className="custom-modal-header">
-            <Header as="h1" textAlign="center">
-              Sign Up
-            </Header>
-          </Modal.Header>
-          <Modal.Content style={{ textAlign: 'center' }}>
-            <Button
-              color="google plus"
-              style={{ margin: '20px' }}
-              onClick={evt => this.handleSignupEvent(evt)}
-            >
-              <Icon name="google" /> Continue with Google
-            </Button>
-
-            <p>
-              <Button className="link-button" onClick={evt => this.handleSignupEvent(evt)}>
-                Or Sign Up with email
-              </Button>
-            </p>
-            <Divider />
-
-            <p>
-              Already a member?
-              <Button className="link-button" onClick={evt => this.handleLoginEvent(evt)}>
-                &nbsp; Login instead.
-              </Button>
-            </p>
-          </Modal.Content>
-        </Modal>
-      </>
-    );
-  }
-}
+  return (
+    <SignupForm
+      onSubmit={onSubmit}
+      onChange={onChange}
+      errors={errors}
+      loading={loading}
+      values={values}
+    />
+  );
+};
 
 Signup.propTypes = {
-  activeItem: PropTypes.string.isRequired,
-  history: PropTypes.instanceOf(Object).isRequired,
+  history: PropTypes.node.isRequired,
 };
 
 export default withRouter(Signup);
